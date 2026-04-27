@@ -1,0 +1,3 @@
+- total_instances: 4697
+- silver_instances: 3085
+- rule: is_null==0 and is_poly==0

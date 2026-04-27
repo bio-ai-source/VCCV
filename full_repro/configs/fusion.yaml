@@ -1,0 +1,13 @@
+r_grid:
+  a0: [-1.0, 0.0, 1.0]
+  a1: [0.5, 1.0, 2.0]
+  a2: [0.5, 1.0, 2.0]
+
+mapping:
+  time_bins: [6, 24, 48]
+  dose_bins: [0.1, 1.0, 10.0]
+  lambda_t: 0.3
+  lambda_d: 1.0
+  lambda_p: 0.4
+  lambda_b: 0.2
+

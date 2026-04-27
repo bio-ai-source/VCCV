@@ -1,0 +1,45 @@
+{
+  "name": "VCCV submission reproduction demo",
+  "baseline_date": "2026-04-27",
+  "manuscript_baseline": "../docs/submission_baseline.md",
+  "primary_package": "full_repro",
+  "data_limit_bytes": 41943040,
+  "checked_in_package_bytes_after_cleanup": 32399858,
+  "input_data_and_linked_endpoint_bytes": 29655226,
+  "experiments": [
+    {
+      "id": "full_virtual_anchor_training_chain",
+      "computation": [
+        "train VirtualDoNet from observed real intervention anchors",
+        "predict virtual anchors for VCCV candidate target/context/time/dose combinations",
+        "fuse observed and virtual anchors",
+        "train near-identity alignment",
+        "run VCCV posterior inference",
+        "recompute virtual mechanism experiment metrics"
+      ],
+      "outputs": [
+        "full_repro/data/processed/virtualdo_predictions.parquet",
+        "full_repro/data/processed/do_fused_mu_var.parquet",
+        "full_repro/results/checkpoints/align/align_params.npz",
+        "full_repro/results/metrics_tables/mechanism_metrics.csv",
+        "full_repro/results/reproduction_report.md"
+      ],
+      "paper_target": "Paper virtual mechanism experiment table; retraining is audited and may drift slightly by environment"
+    },
+    {
+      "id": "exact_paper_samecell_endpoint",
+      "computation": [
+        "read held-out linked prediction rows",
+        "filter expression-supported same-cell subset using the paper rule",
+        "recompute ROC-AUC and PR-AUC for VCCV and comparator methods",
+        "compare against the paper reference table"
+      ],
+      "outputs": [
+        "full_repro/results/metrics_tables/recomputed_linked_transcriptomics_metrics.csv",
+        "full_repro/results/metrics_tables/paper_samecell_auc_reproduction_check.csv",
+        "full_repro/results/exact_paper_samecell_reproduction_report.md"
+      ],
+      "paper_target": "Main-text Section 4.3 / Figure 3d: expression-supported same-cell VCCV ROC-AUC 0.697 and PR-AUC 0.993"
+    }
+  ]
+}

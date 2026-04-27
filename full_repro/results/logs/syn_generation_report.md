@@ -1,0 +1,3 @@
+- total_syn_instances: 4697
+- source: semi-synthetic generation from real L1000 observed do + alignment + noise
+- seed: 20260219
