@@ -14,7 +14,7 @@ The reference is aligned into compound-response space, scored with a covariance-
 
 An explicit warning/null branch represents globally unsupported or stress-associated responses, preventing every query from being forced into a target call.
 
-For the included benchmark, EviDTI supplies the upstream structural-prior scores. It is used as the prior source, while VCCV remains the focus of the downstream evidence workflow.
+For the included benchmark, a DTI model, like EviDTI, supplies the upstream structural-prior scores. It is used as the prior source, while VCCV remains the focus of the downstream evidence workflow.
 
 The computational graph implemented here is:
 
