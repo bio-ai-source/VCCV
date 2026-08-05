@@ -1,92 +1,107 @@
 # VCCV Real-Data Reproduction Workflow
 
-This package contains a compact real-data workflow for VCCV. The workflow starts from processed perturbational signatures and frozen structural-prior scores, trains the virtual anchor model, fits the alignment layer, runs posterior inference, and recomputes evaluation metrics.
+This package contains a compact, self-contained real-data workflow for VCCV. It starts from bundled interaction data and LINCS perturbational profiles, then builds transcriptomic evidence and runs posterior inference.
 
-Each stage writes intermediate artifacts to the local `data/`, `results/`, and `model_cards/` directories. The workflow can be run as a single command or stage by stage.
+Intermediate data, fitted artifacts, predictions, and evaluation files are written to a user-selected output directory. The complete workflow is controlled by one runner.
 
 ## Method Summary
 
-VCCV evaluates a compound-response query against a structural target prior and a transcriptomic evidence model. For each candidate target, a reference intervention signature is obtained from an observed anchor when available and from a trained virtual anchor otherwise. The reference signature is aligned into compound-response space, scored with a Gaussian energy, and combined with the calibrated structural prior. An explicit null branch is scored from stress-like response prototypes so that globally unsupported or stress-dominated profiles are not forced into a target call.
+VCCV evaluates a compound-response query against a structural target prior and a transcriptomic evidence model.
+
+For each candidate target, a reference intervention signature is obtained from an observed anchor when available and from a trained virtual anchor otherwise.
+
+The reference is aligned into compound-response space, scored with a covariance-aware Gaussian energy, and combined with the calibrated structural prior.
+
+An explicit warning/null branch represents globally unsupported or stress-associated responses, preventing every query from being forced into a target call.
+
+For the included benchmark, EviDTI supplies the upstream structural-prior scores. It is used as the prior source, while VCCV remains the focus of the downstream evidence workflow.
 
 The computational graph implemented here is:
 
-1. Train virtual anchors from observed intervention signatures.
-2. Predict virtual anchors for candidate target/context/time/dose combinations.
-3. Fuse observed and virtual anchors by match quality.
-4. Fit the intervention-to-compound alignment map.
-5. Score target and null branches and normalize a joint posterior.
-6. Recompute held-out evaluation metrics.
+1. Validate and parse the packaged raw inputs.
+2. Build quality-controlled interaction labels and perturbational signatures.
+3. Train and reload the upstream structural-prior model.
+4. Train virtual anchors from observed intervention signatures.
+5. Fuse observed and virtual anchors by match quality.
+6. Fit the intervention-to-compound alignment map.
+7. Score target and warning/null branches and normalize the posterior.
+8. Recompute the reference evaluation metrics.
 
-## Inputs
+## Data
 
-`data/processed/` contains processed VCCV inputs:
+`data/raw/` contains the packaged Davis, KIBA, and LINCS GSE92742 inputs. Davis and KIBA provide drug-target interaction data; GSE92742 provides perturbational transcriptomic profiles and metadata.
 
-- `observeddo_mu.parquet`
-- `observeddo_var_diag.parquet`
-- `signatures_drug.parquet`
-- `mechanism_truth.parquet`
+File sizes and cryptographic hashes are recorded in `RAW_INPUT_MANIFEST.json`. Frozen evaluation splits are stored under `splits/`.
 
-Additional inputs are:
-
-- `results/predictions_json/dti_prior_scores.parquet`
-- `splits/drug_heldout/seed_0.json`
-- `results/revision_round11/linked_transcriptomics/linked_test_predictions_with_shortlists.parquet`
-
-The structural prior is provided as a frozen upstream input, consistent with the VCCV design as a transcriptomic corroboration layer over pre-trained structural DTI predictions.
+`data/processed_reference/` contains audit snapshots produced from the raw inputs. The runner does not use these snapshots as training inputs and regenerates processed data for every new run.
 
 ## Environment
 
-Required Python packages:
+The reference environment uses Python 3.12 and PyTorch 2.5.1. CUDA is recommended for the complete workflow, while CPU execution is available for compatibility checks.
 
-- `numpy`
-- `pandas`
-- `pyarrow`
-- `torch`
-- `scikit-learn`
+```bash
+python -m venv .venv
+```
+
+Linux:
+
+```bash
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.lock
+```
+
+Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.lock
+```
 
 ## Run All
 
-```bash
-py scripts/run_all.py
-```
-
-## Stage Commands
+Verify the source, configuration, split, and data hashes:
 
 ```bash
-py scripts/01_train_virtual_anchor.py
-py scripts/02_fuse_observed_virtual.py
-py scripts/03_train_alignment.py
-py scripts/04_run_vccv_inference.py
-py scripts/05_evaluate_virtual_experiment.py
-py scripts/06_reproduce_paper_samecell_auc.py
+python reproduce.py --verify-inputs-only
 ```
 
-Optional input refresh, when the parent repository data are available:
+Run the complete workflow in a new output directory:
 
 ```bash
-py scripts/00_refresh_inputs_from_parent.py
+python reproduce.py --device cuda:0 --output ../vccv_fullchain_run
 ```
+
+CPU execution:
+
+```bash
+python reproduce.py --device cpu --output ../vccv_fullchain_run_cpu
+```
+
+The output directory must be empty. On different hardware, `--allow-table1-drift` can be used for execution checks; observed differences are retained in the comparison output.
 
 ## Pipeline Outputs
 
-Virtual-anchor and inference outputs:
+The main outputs are:
 
-- `data/processed/virtualdo_predictions.parquet`
-- `data/processed/do_fused_mu_var.parquet`
-- `results/checkpoints/align/align_params.npz`
-- `results/predictions_json/mechanism_summary.parquet`
+- `table1/checkpoints/` for the upstream model and VCCV verifier artifacts.
+- `table1/table1_summary.csv` for the recomputed benchmark metrics.
+- `workspace/data/` for regenerated intermediate and processed data.
+- `workspace/results/checkpoints/` for virtual-anchor, fusion, alignment, and posterior artifacts.
+- `workspace/results/predictions_json/` for posterior prediction records.
+- `fullchain_lineage.json` and `run_manifest.json` for provenance and run metadata.
 
-Virtual mechanism experiment outputs:
+Saved models use NPZ or JSON artifacts. Final probabilities are produced after those artifacts are loaded into newly created model objects.
 
-- `results/metrics_tables/mechanism_metrics.csv`
-- `results/metrics_tables/paper_virtual_reproduction_check.csv`
-- `results/reproduction_report.md`
+## Tests
 
-Same-cell endpoint outputs:
-
-- `results/metrics_tables/recomputed_linked_transcriptomics_metrics.csv`
-- `results/exact_paper_samecell_reproduction_report.md`
+```bash
+python -m pytest -q
+```
 
 ## Reproduction Endpoint
 
-The final endpoint recomputes the expression-supported same-cell VCCV metrics from held-out linked prediction rows. The generated report is `results/exact_paper_samecell_reproduction_report.md`.
+The final endpoint recomputes the packaged benchmark metrics from freshly trained and reloaded artifacts. A successful run writes `SUCCESS` markers at the top level and inside `table1/`.
+
+Additional implementation and validation details are provided in `METHOD.md`, `PROVENANCE.md`, and `VALIDATION.md`.

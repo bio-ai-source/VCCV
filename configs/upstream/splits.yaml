@@ -1,0 +1,16 @@
+seeds: [0, 1, 2]
+cal_fraction: 0.15
+test_fraction: 0.2
+
+scenarios:
+  drug_heldout:
+    entity: drug_key
+  target_heldout:
+    entity: target_key
+  context_heldout:
+    entity: context_key
+  time_dose_shift:
+    time_train: [6, 24]
+    time_test: [48]
+    dose_train: [0.1, 1.0]
+    dose_test: [10.0]

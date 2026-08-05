@@ -1,0 +1,19 @@
+{
+  "role": "deterministic per-slice RNG stream map for the Table 1 runner",
+  "warning": "Frozen deterministic stream assignments used by the Table 1 runner.",
+  "streams": [20260219, 20260220],
+  "slice_stream": {
+    "context_heldout|0": 20260219,
+    "context_heldout|1": 20260219,
+    "context_heldout|2": 20260219,
+    "drug_heldout|0": 20260220,
+    "drug_heldout|1": 20260220,
+    "drug_heldout|2": 20260220,
+    "target_heldout|0": 20260219,
+    "target_heldout|1": 20260219,
+    "target_heldout|2": 20260220,
+    "time_dose_shift|0": 20260219,
+    "time_dose_shift|1": 20260219,
+    "time_dose_shift|2": 20260220
+  }
+}

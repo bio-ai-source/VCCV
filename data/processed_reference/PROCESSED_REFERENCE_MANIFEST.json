@@ -1,0 +1,76 @@
+{
+  "algorithm": "SHA-256",
+  "files": {
+    "README.md": {
+      "sha256": "3de130ca018a228b5255749289bb1de1e013292b1c00c90f755c8a34c6c77143",
+      "size": 933
+    },
+    "interim/cell_info.parquet": {
+      "sha256": "97d23f671550293c6d4135d63a62df7d9d5b9953a76176c5cc1d68cf8dd83406",
+      "size": 13311
+    },
+    "interim/entity_manifest.parquet": {
+      "sha256": "7516793b52bf575028347ab7b1c8229ae7cde33de2c273e3f4cb4ff755d606eb",
+      "size": 203218
+    },
+    "interim/gene_axis.parquet": {
+      "sha256": "d23b4ea928ad4b1ab05effc0b7449e4a5172a8c469dc94afddb37529b3b5aabd",
+      "size": 20219
+    },
+    "interim/gene_info.parquet": {
+      "sha256": "45c114b0edc1f6bc2809c0101bf2b56102f88b0c0a9eb0aa9587d9690c48d062",
+      "size": 413842
+    },
+    "interim/pert_info.parquet": {
+      "sha256": "19cddc1e261faaed0042aa0f170f1d2ba1ff3694fd6b5d87a96ca6f9a0fedd8f",
+      "size": 2136420
+    },
+    "interim/sig_info.parquet": {
+      "sha256": "2cd4da4bdde72804d8c819db28fa1e2ab5810edee9ef771b97b0799cd5155e73",
+      "size": 14631034
+    },
+    "interim/sig_metrics.parquet": {
+      "sha256": "5affdf23edfcd13e885457ea7a36f6cce5ead697b518e5d33aa1899f2286bc42",
+      "size": 13999233
+    },
+    "processed/align_ground_truth.npz": {
+      "sha256": "3408571e6a45a258d11dce8a87318fd6a56f0ece953b4490fd678b90b4907245",
+      "size": 507596
+    },
+    "processed/dti_labels.parquet": {
+      "sha256": "f9b7bb71a477e2aa1d1680df137c19400e22476d4408778a9dadeec2b70579af",
+      "size": 5682048
+    },
+    "processed/mechanism_truth.parquet": {
+      "sha256": "0c2bedde59917c0ffd3e28ed2468eef76b68b88c815fb229cdfcb26972c5c503",
+      "size": 87847
+    },
+    "processed/observeddo_mu.parquet": {
+      "sha256": "39ac2f4513cc70826d63f414ee41ea6cbddec2955af022aa0f44a14393605eb2",
+      "size": 150116
+    },
+    "processed/observeddo_var_diag.parquet": {
+      "sha256": "b168d0ae99f9369a4343053f51da5d5467f3a325d02c2ed696a40627ac3712c6",
+      "size": 1547483
+    },
+    "processed/signatures_do.parquet": {
+      "sha256": "0b680e8cf13f9ea0c60be1ba26041391c86fd62968221774896320b3af8bd05f",
+      "size": 1688058
+    },
+    "processed/signatures_do_raw.parquet": {
+      "sha256": "72301f692932b155ec8bd59bb97527a31925f371d576855f15a307fc8a6bbdf9",
+      "size": 3254313
+    },
+    "processed/signatures_drug.parquet": {
+      "sha256": "a6f1a58735d56ff26983a754c912d69fe77475085dc4699a05d92f2860627352",
+      "size": 294383
+    },
+    "processed/signatures_drug_raw.parquet": {
+      "sha256": "fbd4e1618e4fa2a57f1c3e92e4a8986bf87cf3bca0f9f53d15641840ccacaaab",
+      "size": 11865452
+    }
+  },
+  "generated_from_packaged_raw": true,
+  "runner_reads_this_snapshot": false,
+  "schema_version": 1
+}

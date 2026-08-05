@@ -1,0 +1,56 @@
+project_name: vccvdti
+mode: budget
+seed: 20260219
+num_workers: 8
+
+run:
+  random_search_trials: 24
+  max_tune_rounds: 5
+  output_dir: results
+
+download:
+  include_lincs_metadata: true
+  include_lincs_matrices: true
+  max_retries: 3
+
+modes:
+  toy:
+    max_real_pairs_per_dataset: 20000
+    num_virtual_instances: 1500
+    num_genes: 128
+  budget:
+    max_real_pairs_per_dataset: 12000
+    num_virtual_instances: 5000
+    num_genes: 256
+  full:
+    max_real_pairs_per_dataset: -1
+    num_virtual_instances: 20000
+    num_genes: 512
+
+scenarios:
+  virtual:
+    enabled: true
+    family: mechanism
+  ablation:
+    enabled: true
+    family: mechanism
+  real_davis:
+    enabled: true
+    family: binding
+    dataset: davis
+  real_kiba:
+    enabled: true
+    family: binding
+    dataset: kiba
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  manifests: data/manifests
+  splits: splits
+  metrics: results/metrics_tables
+  logs: results/logs
+  predictions: results/predictions_json
+  figures: results/figures
+  checkpoints: results/checkpoints

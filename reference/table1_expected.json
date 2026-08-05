@@ -1,0 +1,22 @@
+{
+  "role": "post-evaluation assertion only; never used to generate predictions or metrics",
+  "aggregation": "unweighted macro mean across 4 scenarios x 3 split seeds x 2 datasets",
+  "rows": [
+    {
+      "display_name": "EviDTI (Zhao et al. 2025)",
+      "internal_model": "EviDTI_2025_Reimpl",
+      "auc": 0.8444724250979432,
+      "pr_auc": 0.9916508758781097,
+      "nll": 0.0800438614284217,
+      "ece": 0.0149020149783535
+    },
+    {
+      "display_name": "VCCV + EviDTI",
+      "internal_model": "VCCV_Verifier_EviDTI_2025_Reimpl",
+      "auc": 0.8748975680326808,
+      "pr_auc": 0.9935920434965561,
+      "nll": 0.0743295753456723,
+      "ece": 0.0135545290991329
+    }
+  ]
+}

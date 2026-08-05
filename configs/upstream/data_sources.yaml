@@ -1,0 +1,73 @@
+sources:
+  geo_gse92742:
+    purpose: "Canonical LINCS source used to construct observed DO signatures"
+    required: true
+    files:
+      - name: GSE92742_Broad_LINCS_sig_info.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_sig_info.txt.gz
+      - name: GSE92742_Broad_LINCS_sig_metrics.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_sig_metrics.txt.gz
+      - name: GSE92742_Broad_LINCS_gene_info.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_gene_info.txt.gz
+      - name: GSE92742_Broad_LINCS_cell_info.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_cell_info.txt.gz
+      - name: GSE92742_Broad_LINCS_pert_info.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_pert_info.txt.gz
+      - name: GSE92742_SHA512SUMS.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_SHA512SUMS.txt.gz
+      - name: GSE92742_Broad_LINCS_Level2_GEX_delta_n49216x978.gctx.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_Level2_GEX_delta_n49216x978.gctx.gz
+
+  geo_gse70138:
+    purpose: "Unused extension source; intentionally not bundled or parsed"
+    required: false
+    files:
+      - name: GSE70138_Broad_LINCS_sig_info_2017-03-06.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE70nnn/GSE70138/suppl/GSE70138_Broad_LINCS_sig_info_2017-03-06.txt.gz
+      - name: GSE70138_Broad_LINCS_sig_metrics_2017-03-06.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE70nnn/GSE70138/suppl/GSE70138_Broad_LINCS_sig_metrics_2017-03-06.txt.gz
+      - name: GSE70138_Broad_LINCS_gene_info_2017-03-06.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE70nnn/GSE70138/suppl/GSE70138_Broad_LINCS_gene_info_2017-03-06.txt.gz
+      - name: GSE70138_Broad_LINCS_cell_info_2017-04-28.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE70nnn/GSE70138/suppl/GSE70138_Broad_LINCS_cell_info_2017-04-28.txt.gz
+      - name: GSE70138_Broad_LINCS_pert_info_2017-03-06.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE70nnn/GSE70138/suppl/GSE70138_Broad_LINCS_pert_info_2017-03-06.txt.gz
+      - name: GSE70138_SHA512SUMS.txt.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE70nnn/GSE70138/suppl/GSE70138_SHA512SUMS.txt.gz
+      - name: GSE70138_Broad_LINCS_Level2_GEX_n345976x978_2017-03-06.gctx.gz
+        url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE70nnn/GSE70138/suppl/GSE70138_Broad_LINCS_Level2_GEX_n345976x978_2017-03-06.gctx.gz
+
+  deepdta_davis:
+    purpose: "Real DTI benchmark data"
+    required: true
+    files:
+      - name: ligands_can.txt
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/davis/ligands_can.txt
+      - name: proteins.txt
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/davis/proteins.txt
+      - name: Y
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/davis/Y
+      - name: train_fold_setting1.txt
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/davis/folds/train_fold_setting1.txt
+      - name: test_fold_setting1.txt
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/davis/folds/test_fold_setting1.txt
+
+  deepdta_kiba:
+    purpose: "Real DTI benchmark data"
+    required: true
+    files:
+      - name: ligands_can.txt
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/kiba/ligands_can.txt
+      - name: proteins.txt
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/kiba/proteins.txt
+      - name: Y
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/kiba/Y
+      - name: train_fold_setting1.txt
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/kiba/folds/train_fold_setting1.txt
+      - name: test_fold_setting1.txt
+        url: https://raw.githubusercontent.com/hkmztrk/DeepDTA/a546a8433a6822e958f36171c4356ad6f414d623/data/kiba/folds/test_fold_setting1.txt
+
+parsers:
+  gctx:
+    preferred: cmapPy
+    fallback: none

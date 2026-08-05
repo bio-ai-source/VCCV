@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vccv-evidti-fullchain-reproduction"
+version = "2.0.1"
+description = "Raw-data VCCV upstream, posterior, EviDTI training, inference, and Table 1 reproduction"
+requires-python = "==3.12.*"
+dependencies = [
+  "cmapPy==4.0.1",
+  "h5py==3.15.1",
+  "numpy==2.4.6",
+  "pandas==2.3.3",
+  "pyarrow==23.0.1",
+  "PyYAML==6.0.3",
+  "requests==2.32.5",
+  "scikit-learn==1.8.0",
+  "torch==2.5.1",
+  "rdkit==2025.9.6"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

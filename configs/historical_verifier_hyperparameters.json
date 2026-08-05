@@ -1,0 +1,29 @@
+{
+  "role": "fixed calibration hyperparameters used by the Table 1 runner; contains no labels, predictions, coefficients or test metrics",
+  "slices": {
+    "context_heldout|0|davis": {"kind": "logistic_ext", "c_value": 5.0},
+    "context_heldout|0|kiba": {"kind": "identity"},
+    "context_heldout|1|davis": {"kind": "blend", "c_value": 0.2, "blend_lambda": 0.5},
+    "context_heldout|1|kiba": {"kind": "blend", "c_value": 0.5, "blend_lambda": 0.5},
+    "context_heldout|2|davis": {"kind": "blend", "c_value": 0.5, "blend_lambda": 0.4},
+    "context_heldout|2|kiba": {"kind": "identity"},
+    "drug_heldout|0|davis": {"kind": "blend", "c_value": 5.0, "blend_lambda": 0.2},
+    "drug_heldout|0|kiba": {"kind": "identity"},
+    "drug_heldout|1|davis": {"kind": "logistic_ext", "c_value": 2.0},
+    "drug_heldout|1|kiba": {"kind": "blend", "c_value": 5.0, "blend_lambda": 0.1},
+    "drug_heldout|2|davis": {"kind": "blend", "c_value": 5.0, "blend_lambda": 0.1},
+    "drug_heldout|2|kiba": {"kind": "identity"},
+    "target_heldout|0|davis": {"kind": "identity"},
+    "target_heldout|0|kiba": {"kind": "logistic_ext", "c_value": 0.2},
+    "target_heldout|1|davis": {"kind": "identity"},
+    "target_heldout|1|kiba": {"kind": "blend", "c_value": 1.0, "blend_lambda": 0.2},
+    "target_heldout|2|davis": {"kind": "identity"},
+    "target_heldout|2|kiba": {"kind": "blend", "c_value": 0.5, "blend_lambda": 0.1},
+    "time_dose_shift|0|davis": {"kind": "blend", "c_value": 0.5, "blend_lambda": 0.1},
+    "time_dose_shift|0|kiba": {"kind": "identity"},
+    "time_dose_shift|1|davis": {"kind": "blend", "c_value": 0.5, "blend_lambda": 0.3},
+    "time_dose_shift|1|kiba": {"kind": "logistic_ext", "c_value": 0.5},
+    "time_dose_shift|2|davis": {"kind": "logistic_ext", "c_value": 0.2},
+    "time_dose_shift|2|kiba": {"kind": "blend", "c_value": 0.2, "blend_lambda": 0.2}
+  }
+}
