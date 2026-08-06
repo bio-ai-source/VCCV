@@ -1,4 +1,4 @@
-# Virtual-to-Cellular Corroboration and Validation (VCCV) Real-Data Reproduction Workflow
+# Virtual-to-Cellular Corroboration for Validation (VCCV) Real-Data Reproduction Workflow
 
 This package contains a compact, self-contained real-data workflow for VCCV. It starts from bundled interaction data and LINCS perturbational profiles, then builds transcriptomic evidence and runs posterior inference.
 
