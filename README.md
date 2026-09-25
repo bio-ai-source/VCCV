@@ -99,9 +99,3 @@ Saved models use NPZ or JSON artifacts. Final probabilities are produced after t
 ```bash
 python -m pytest -q
 ```
-
-## Reproduction Endpoint
-
-The final endpoint recomputes the packaged benchmark metrics from freshly trained and reloaded artifacts. A successful run writes `SUCCESS` markers at the top level and inside `table1/`.
-
-Additional implementation and validation details are provided in `METHOD.md`, `PROVENANCE.md`, and `VALIDATION.md`.
